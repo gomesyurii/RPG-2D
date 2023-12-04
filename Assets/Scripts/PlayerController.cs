@@ -42,12 +42,27 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             playerAnimator.SetTrigger("attack");
+        }        
+
+        if (Input.GetKey(KeyCode.LeftShift) &&  player.entity.currentStamina > 0) 
+        {
+            player.entity.speed =  player.entity.runSpeed;
+            player.entity.currentStamina -= 0.3f;
         }
+        else 
+        {
+             player.entity.speed =  player.entity.walkSpeed;
+        }
+       
     }
+
+    
 
     void FixedUpdate()
     {
         rb.MovePosition(rb.position + move * player.entity.speed * Time.fixedDeltaTime);
+
+        
     }
 
 }

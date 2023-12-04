@@ -72,11 +72,7 @@ public class Player : MonoBehaviour
             entity.currentStamina -= 5;
         }
 
-        while(Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            entity.speed += 10;
-            entity.currentStamina -= 1;
-        }
+        
 
     }
 

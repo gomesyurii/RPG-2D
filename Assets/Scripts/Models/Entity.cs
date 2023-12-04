@@ -23,8 +23,8 @@ public class Entity
 
 
     [Header("Stamina")]
-    public int currentStamina;
-    public int maxStamina;
+    public float currentStamina;
+    public float maxStamina;
 
 
     [Header("Stats")]
@@ -34,6 +34,11 @@ public class Entity
     public int damage = 1;
     public int defense = 1;
     public int speed = 2;
+    public int runSpeed = 4;
+
+    public int walkSpeed = 2;
+    
+    
     public int intelligence = 1;
 
 }
