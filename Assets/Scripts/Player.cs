@@ -6,6 +6,20 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public Entity entity;
+    [Header("Player regen system")]
+    public bool regenHpEnabled = true;
+    public bool regenManaEnabled = true;
+    public bool regenStaminaEnabled = true;
+    public float regenHpTime = 5f;
+    public int regenHpAmount = 5;
+    public float regenStaminaTime = 3f;
+    public int regenStaminaAmount;
+
+    public float regenManaTime = 2f;
+    public int regenManaAmount = 5;
+
+    [Header("Game Manager")]
+    public GameManager manager;
 
     [Header("Player UI")]
     public Slider health;
@@ -14,13 +28,22 @@ public class Player : MonoBehaviour
     public Slider exp;
     void Start()
     {
+        if (manager == null)
+        {
+            Debug.LogError("game manager not found");
+            return;
+        }
+
+        entity.maxHealth = manager.CalculateHealth(this);
+        entity.maxMana = manager.CalculateMana(this);
+        entity.maxStamina = manager.CalculateStamina(this);
+
         entity.currentHealth = entity.maxHealth;
         entity.currentMana = entity.maxMana;
         entity.currentStamina = entity.maxStamina;
-        
+
         health.maxValue = entity.maxHealth;
         health.value = health.maxValue;
-
 
         mana.maxValue = entity.maxMana;
         mana.value = mana.maxValue;
@@ -30,6 +53,10 @@ public class Player : MonoBehaviour
 
         exp.value = 0;
 
+        StartCoroutine(RegenHealth());
+        StartCoroutine(RegenMana());
+        StartCoroutine(RegenStamina());
+
     }
 
     void Update()
@@ -38,13 +65,95 @@ public class Player : MonoBehaviour
         mana.value = entity.currentMana;
         stamina.value = entity.currentStamina;
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             entity.currentHealth -= 5;
+            entity.currentMana -= 5;
+            entity.currentStamina -= 5;
         }
-        
+
+        while(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            entity.speed += 10;
+            entity.currentStamina -= 1;
+        }
 
     }
 
-    
+    IEnumerator RegenHealth()
+    {
+        regenHpAmount = ((entity.willPower + entity.resistence)/4);
+        while (true)
+        {
+            if (regenHpEnabled)
+            {
+                if (entity.currentHealth < entity.maxHealth)
+                {
+                    entity.currentHealth += regenHpAmount;
+                    yield return new WaitForSeconds(regenHpTime);
+                }
+                else
+                {
+                    yield return null;
+                }
+            }
+            else
+            {
+                yield return null;
+            }
+
+        }
+    }
+
+    IEnumerator RegenMana()
+    {
+        regenManaAmount = ((entity.intelligence) + (entity.level * 2) + 2);
+        while (true)
+        {
+            if (regenManaEnabled)
+            {
+                if (entity.currentMana < entity.maxMana)
+                {
+                    entity.currentMana += regenManaAmount;
+                    yield return new WaitForSeconds(regenManaTime);
+                }
+                else
+                {
+                    yield return null;
+                }
+            }
+            else
+            {
+                yield return null;
+            }
+
+        }
+    }
+
+    IEnumerator RegenStamina()
+    {
+        regenStaminaAmount = ((entity.resistence + entity.willPower) / 2) + entity.level;
+        while (true)
+        {
+            if (regenStaminaEnabled)
+            {
+                if (entity.currentStamina < entity.maxStamina)
+                {
+                    entity.currentStamina += regenStaminaAmount;
+                    yield return new WaitForSeconds(regenStaminaTime);
+                }
+                else
+                {
+                    yield return null;
+                }
+            }
+            else
+            {
+                yield return null;
+            }
+
+        }
+    }
+
+
 }

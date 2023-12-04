@@ -8514,6 +8514,50 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1667091368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1667091370}
+  - component: {fileID: 1667091369}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1667091369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667091368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11892cabadb43ee4e9fd378e3218a99a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1667091370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1667091368}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.5534465, y: -3.4214232, z: 0.117473826}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1673125273
 GameObject:
   m_ObjectHideFlags: 0
@@ -8802,6 +8846,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entity:
     name: Yuri
+    level: 1
     currentHealth: 100
     maxHealth: 100
     currentMana: 100
@@ -8809,10 +8854,12 @@ MonoBehaviour:
     currentStamina: 100
     maxStamina: 100
     strength: 1
-    resistence: 1
+    resistence: 6
     damage: 1
     defense: 1
     speed: 1
+    intelligence: 3
+  manager: {fileID: 1667091369}
   health: {fileID: 78196042}
   mana: {fileID: 1577010227}
   stamina: {fileID: 320505380}
@@ -8897,3 +8944,4 @@ SceneRoots:
   - {fileID: 1238263786}
   - {fileID: 825100042}
   - {fileID: 885118172}
+  - {fileID: 1667091370}
