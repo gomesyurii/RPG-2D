@@ -86,16 +86,6 @@ public class Monster : MonoBehaviour
         }
         else
         {
-            if (entity.attackTimer > 0)
-            {
-                entity.attackTimer -= Time.deltaTime;
-            }
-
-            if (entity.attackTimer < 0)
-            {
-                entity.attackTimer = 0;
-            }
-
             if (entity.target != null && entity.inCombat)
             {
                 if (!entity.combatCoroutine)

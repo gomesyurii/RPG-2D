@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
 
     IEnumerator RegenStamina()
     {
-        regenStaminaAmount = (((entity.resistence + entity.willPower) / 2) + entity.level)/4;
+        regenStaminaAmount = (((entity.resistence + entity.willPower) / 2) + entity.level);
         while (true)
         {
             if (regenStaminaEnabled)

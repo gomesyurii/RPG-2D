@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class Entity
+public class Entity 
 {
     [Header("Name")]
     public string name;
