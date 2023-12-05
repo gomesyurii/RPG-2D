@@ -119,7 +119,7 @@ public class Monster : MonoBehaviour
         {
             entity.inCombat = true;
             entity.target = collider.gameObject;
-            entity.target.getComponent<BoxCollider2D>().isTrigger = true;
+            entity.target.GetComponent<BoxCollider2D>().isTrigger = true;
         }
     }
 
@@ -130,7 +130,7 @@ public class Monster : MonoBehaviour
             entity.inCombat = false;
             if (entity.target)
             {
-                entity.target.getComponent<BoxCollider2D>().isTrigger = false;
+                entity.target.GetComponent<BoxCollider2D>().isTrigger = false;
                 entity.target = null;
             }
 
