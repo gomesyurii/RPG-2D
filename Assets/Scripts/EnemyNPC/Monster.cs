@@ -119,6 +119,7 @@ public class Monster : MonoBehaviour
         {
             entity.inCombat = true;
             entity.target = collider.gameObject;
+            entity.target.getComponent<BoxCollider2D>().isTrigger = true;
         }
     }
 
@@ -127,7 +128,12 @@ public class Monster : MonoBehaviour
         if (collider.tag == "Player")
         {
             entity.inCombat = false;
-            entity.target = null;
+            if (entity.target)
+            {
+                entity.target.getComponent<BoxCollider2D>().isTrigger = false;
+                entity.target = null;
+            }
+
         }
     }
 
@@ -143,28 +149,28 @@ public class Monster : MonoBehaviour
 
     }
 
-     void Patrol()
+    void Patrol()
     {
         if (entity.dead)
             return;
- 
+
         // calcular a distance do waypoint
         float distanceToTarget = Vector2.Distance(transform.position, targetWaypoint.position);
- 
-        if(distanceToTarget <= arrivalDistance || distanceToTarget >= lastDistanceToTarget)
+
+        if (distanceToTarget <= arrivalDistance || distanceToTarget >= lastDistanceToTarget)
         {
             animator.SetBool("isWalking", false);
- 
-            if(currentWaitTime <= 0)
+
+            if (currentWaitTime <= 0)
             {
                 currentWaypoint++;
- 
+
                 if (currentWaypoint >= waypointList.Length)
                     currentWaypoint = 0;
- 
+
                 targetWaypoint = waypointList[currentWaypoint];
                 lastDistanceToTarget = Vector2.Distance(transform.position, targetWaypoint.position);
- 
+
                 currentWaitTime = waitTime;
             }
             else
@@ -177,17 +183,17 @@ public class Monster : MonoBehaviour
             animator.SetBool("isWalking", true);
             lastDistanceToTarget = distanceToTarget;
         }
- 
+
         Vector2 direction = (targetWaypoint.position - transform.position).normalized;
         animator.SetFloat("input_x", direction.x);
         animator.SetFloat("input_y", direction.y);
- 
+
         rb2D.MovePosition(rb2D.position + direction * (entity.speed * Time.fixedDeltaTime));
     }
 
     IEnumerator Attack()
     {
-        entity.comabatCoroutine = true; 
+        entity.comabatCoroutine = true;
         while (true)
         {
             yield return new WaitForSeconds(entity.attackTimer);
