@@ -39,12 +39,12 @@ public class Entity
 
 
     [Header("Combat")]
-    public float attackDistance = 0.5f;
+    public float attackDistance = 1f;
     public float attackTimer = 1;
     public float cooldown = 2f;
     public bool inCombat = false;
     public GameObject target;
-    public bool comabatCoroutine = false;
+    public bool combatCoroutine = false;
     public bool dead = false;
 
 

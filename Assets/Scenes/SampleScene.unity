@@ -8898,6 +8898,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3220214364288512399, guid: 6aa8d4f5be4d21f459f7896ab8d03743, type: 3}
+      propertyPath: m_Size.x
+      value: 1.63
+      objectReference: {fileID: 0}
+    - target: {fileID: -3220214364288512399, guid: 6aa8d4f5be4d21f459f7896ab8d03743, type: 3}
+      propertyPath: m_Size.y
+      value: 1.85
+      objectReference: {fileID: 0}
     - target: {fileID: 662156031543524600, guid: 6aa8d4f5be4d21f459f7896ab8d03743, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.6
@@ -9015,6 +9023,22 @@ PrefabInstance:
       propertyPath: waypointList.Array.data[3]
       value: 
       objectReference: {fileID: 1952911370}
+    - target: {fileID: 2470749577855783473, guid: 2a88fb2fa9232fb4ca02aecdf98a9ffc, type: 3}
+      propertyPath: m_Size.x
+      value: 1.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470749577855783473, guid: 2a88fb2fa9232fb4ca02aecdf98a9ffc, type: 3}
+      propertyPath: m_Size.y
+      value: 1.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470749577855783473, guid: 2a88fb2fa9232fb4ca02aecdf98a9ffc, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470749577855783473, guid: 2a88fb2fa9232fb4ca02aecdf98a9ffc, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.24
+      objectReference: {fileID: 0}
     - target: {fileID: 2858969475355728196, guid: 2a88fb2fa9232fb4ca02aecdf98a9ffc, type: 3}
       propertyPath: m_Name
       value: Enemy

@@ -98,14 +98,14 @@ public class Monster : MonoBehaviour
 
             if (entity.target != null && entity.inCombat)
             {
-                if (!entity.comabatCoroutine)
+                if (!entity.combatCoroutine)
                 {
                     StartCoroutine(Attack());
                 }
             }
             else
             {
-                entity.comabatCoroutine = false;
+                entity.combatCoroutine = false;
                 StopCoroutine(Attack());
             }
 
@@ -119,7 +119,7 @@ public class Monster : MonoBehaviour
         {
             entity.inCombat = true;
             entity.target = collider.gameObject;
-            entity.target.GetComponent<BoxCollider2D>().isTrigger = true;
+            entity.target.GetComponent<CapsuleCollider2D>().isTrigger = true;
         }
     }
 
@@ -130,7 +130,7 @@ public class Monster : MonoBehaviour
             entity.inCombat = false;
             if (entity.target)
             {
-                entity.target.GetComponent<BoxCollider2D>().isTrigger = false;
+                entity.target.GetComponent<CapsuleCollider2D>().isTrigger = false;
                 entity.target = null;
             }
 
@@ -193,14 +193,14 @@ public class Monster : MonoBehaviour
 
     IEnumerator Attack()
     {
-        entity.comabatCoroutine = true;
+        entity.combatCoroutine = true;
         while (true)
         {
             yield return new WaitForSeconds(entity.attackTimer);
 
             if (entity.target != null && !entity.target.GetComponent<Player>().entity.dead)
             {
-                animator.SetBool("attack", true);
+                animator.SetBool("attack", false);
                 float distance = Vector2.Distance(entity.target.transform.position, transform.position);
                 if (distance <= entity.attackDistance)
                 {
