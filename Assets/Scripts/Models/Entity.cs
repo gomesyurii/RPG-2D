@@ -11,7 +11,6 @@ public class Entity
     public int level;
 
 
-
     [Header("Health")]
     public int currentHealth;
     public int maxHealth;
@@ -33,12 +32,21 @@ public class Entity
     public int willPower = 1;
     public int damage = 1;
     public int defense = 1;
-    public int speed = 2;
-    public int runSpeed = 4;
-
-    public int walkSpeed = 2;
-    
-    
+    public float speed = 0.5f;
+    public float runSpeed = 0.8f;
+    public float walkSpeed = 0.5f;
     public int intelligence = 1;
+
+
+    [Header("Combat")]
+    public float attackDistance = 0.5f;
+    public float attackTimer = 1;
+    public float cooldown = 2f;
+    public bool inCombat = false;
+    public GameObject target;
+    public bool comabatCoroutine = false;
+    public bool dead = false;
+
+
 
 }

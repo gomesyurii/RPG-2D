@@ -34,9 +34,9 @@ public class Player : MonoBehaviour
             return;
         }
 
-        entity.maxHealth = manager.CalculateHealth(this);
-        entity.maxMana = manager.CalculateMana(this);
-        entity.maxStamina = manager.CalculateStamina(this);
+        entity.maxHealth = manager.CalculateHealth(entity);
+        entity.maxMana = manager.CalculateMana(entity); 
+        entity.maxStamina = manager.CalculateStamina(entity);
 
         entity.currentHealth = entity.maxHealth;
         entity.currentMana = entity.maxMana;
@@ -65,20 +65,19 @@ public class Player : MonoBehaviour
         mana.value = entity.currentMana;
         stamina.value = entity.currentStamina;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        
+        if (entity.currentHealth <= 0)
         {
-            entity.currentHealth -= 5;
-            entity.currentMana -= 5;
-            entity.currentStamina -= 5;
+            entity.currentHealth = 0;
+            entity.dead = true;
         }
-
         
 
     }
 
     IEnumerator RegenHealth()
     {
-        regenHpAmount = ((entity.willPower + entity.resistence)/4);
+        regenHpAmount = ((entity.willPower + entity.resistence)/10);
         while (true)
         {
             if (regenHpEnabled)
@@ -103,7 +102,7 @@ public class Player : MonoBehaviour
 
     IEnumerator RegenMana()
     {
-        regenManaAmount = ((entity.intelligence) + (entity.level * 2) + 2);
+        regenManaAmount = ((entity.intelligence) + (entity.level * 2) + 2)/4;
         while (true)
         {
             if (regenManaEnabled)
@@ -128,7 +127,7 @@ public class Player : MonoBehaviour
 
     IEnumerator RegenStamina()
     {
-        regenStaminaAmount = ((entity.resistence + entity.willPower) / 2) + entity.level;
+        regenStaminaAmount = (((entity.resistence + entity.willPower) / 2) + entity.level)/4;
         while (true)
         {
             if (regenStaminaEnabled)

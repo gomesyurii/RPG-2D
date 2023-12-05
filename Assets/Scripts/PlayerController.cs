@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftShift) &&  player.entity.currentStamina > 0) 
         {
             player.entity.speed =  player.entity.runSpeed;
-            player.entity.currentStamina -= 0.3f;
+            player.entity.currentStamina -= 0.05f;
         }
         else 
         {
